@@ -1,0 +1,37 @@
+title: "Exercise 1"
+output: html_document
+date: "2024-11-01"
+---
+
+```{r setup, include=TRUE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+This code chunk will create a function to transform datasets. Basically, the function "transformed_data" will add a column to tha dataset with the information of the row_names, so we can work on this information. Additionally, it will select the new column with the row names, and the first two columns of the dataset.
+
+```{r}
+#Loading libraries
+suppressPackageStartupMessages({ #Suppressing starting package messages
+  library(tidyverse)
+  library(dplyr)
+})
+
+#Create function "transformed_data" to transform datasets
+transformed_data <- function(data) {
+  data_2 <- data %>%
+    mutate(row_names= rownames(data)) %>% #Add a new column with the names of the rows in order to be able to work with this information
+    select(row_names,1:2) #Select only the new column and the 2 first columns of the dataset
+  return(data_2)
+}
+```
+Now we can apply the function to the mtcars dataset, which contains information on fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973–74 models).
+
+```{r}
+#Loading R-built in dataset "mtcars"
+data("mtcars")
+
+# Calling the function and assigning the result to a new dataset "transformed_mtcars"
+transformed_mtcars <- transformed_data(mtcars)
+
+# Printing the results
+print(transformed_mtcars)
+```
