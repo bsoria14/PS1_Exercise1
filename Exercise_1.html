@@ -423,8 +423,8 @@ transformation, which group the information by the first column. This
 transformation will present how many observations fall under the unique
 categories of the first column.</p>
 <pre class="r"><code>#Creating the function to group the information by the first column
-grouped_data &lt;- function(data) {
-  data_3 &lt;- data %&gt;%
+grouped_data &lt;- function(data_new) {
+  data_3 &lt;- data_new %&gt;%
     group_by(across(1)) %&gt;% #Grouping by the first column
     summarise(count=n()) #Present the number of unit that match wit the category of the first column
   return(data_3)
